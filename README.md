@@ -14,4 +14,4 @@ Open `index.html` in a browser.
 4. In GitHub, open `Settings` -> `Pages`, and use `Deploy from a branch` with `main` and `/root`.
 5. The site will publish at `https://riaria9.github.io`.
 
-Keep private PDFs, zip files, phone numbers, and unpublished course materials out of the public repository.
+Keep private PDFs, zip files, and unpublished course materials out of the public repository. The resume PDF in `assets/` is intentionally public.
