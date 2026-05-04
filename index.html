@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Edward Zhang is a software engineer focused on operating systems, distributed systems, cloud infrastructure, and ML systems."
+    >
+    <title>Edward Zhang | Software Engineer</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Edward Zhang home">
+        <span class="brand-mark" aria-hidden="true">EZ</span>
+        <span>Edward Zhang</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#research">ML Systems</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Software engineer | Systems, distributed infra, and ML serving</p>
+          <h1 id="hero-title">Edward Zhang</h1>
+          <p class="hero-lede">
+            I build reliable software across the stack, from x86 kernel internals and
+            replicated storage protocols to cloud-backed research platforms and frontend products.
+          </p>
+          <div class="hero-actions" aria-label="Primary links">
+            <a class="button primary" href="mailto:ezhangraduate@gmail.com">Email</a>
+            <a class="button secondary" href="https://github.com/Riaria9" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button secondary" href="https://linkedin.com/in/edward-zhang-sde" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="systems-visual" aria-label="Animated systems visualization">
+          <canvas id="systemsCanvas" width="960" height="720"></canvas>
+          <div class="visual-caption">
+            <span>kernel mode</span>
+            <span>consensus</span>
+            <span>replication</span>
+            <span>serving memory</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-facts" aria-label="Profile summary">
+        <div>
+          <span class="fact-value">CMU</span>
+          <span class="fact-label">M.S. Information Networking, Computer Systems concentration</span>
+        </div>
+        <div>
+          <span class="fact-value">USC</span>
+          <span class="fact-label">B.S. Computer Science, GPA 3.9/4.0</span>
+        </div>
+        <div>
+          <span class="fact-value">Google</span>
+          <span class="fact-label">Incoming Software Engineer Intern, Summer 2026</span>
+        </div>
+      </section>
+
+      <section class="content-section spotlight-section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <p class="eyebrow">Featured systems project</p>
+          <h2 id="projects-title">Unix-like kernel from scratch</h2>
+        </div>
+        <article class="spotlight-card">
+          <div class="spotlight-copy">
+            <div class="project-topline">
+              <span>Operating systems</span>
+              <span>C | x86 | Simics</span>
+            </div>
+            <h3>15-410 Kernel Project</h3>
+            <p>
+              Designed and implemented a Unix-like kernel supporting multiple virtual address
+              spaces, user-kernel mode transitions, preemptive multitasking, system calls, exception
+              handling, and device-backed console, keyboard, and timer functionality.
+            </p>
+            <ul class="metric-list">
+              <li>Built paging-based virtual memory, physical frame allocation, address-space loading, and user pointer validation.</li>
+              <li>Implemented scheduling and context switching with timer-driven preemption and clean sleep/wakeup paths.</li>
+              <li>Integrated process and thread lifecycle behavior including fork, exec, wait, vanish, thread fork, and fault cleanup.</li>
+              <li>Carried earlier OS components forward: traceback, interrupt-driven drivers, and a user-level thread library.</li>
+            </ul>
+          </div>
+          <div class="spotlight-aside">
+            <span class="aside-number">PL0</span>
+            <p>Kernel code, IDT handlers, page tables, and scheduler state built around a strict user/kernel boundary.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-section" aria-labelledby="ds-title">
+        <div class="section-heading">
+          <p class="eyebrow">Distributed systems</p>
+          <h2 id="ds-title">Replicated, concurrent, and fault-aware services</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-topline">
+              <span>Distributed computation</span>
+              <span>Go | UDP</span>
+            </div>
+            <h3>Distributed Bitcoin Mining System</h3>
+            <p>
+              Built a distributed miner that partitions hash search across dynamic workers using a
+              custom Live Sequence Protocol over UDP, with fair scheduling, heartbeat detection,
+              retransmission, and failed-work reassignment.
+            </p>
+            <ul class="metric-list">
+              <li>Reduced a 9-digit hash search from 28 hours to 17 minutes with 100+ concurrent miners.</li>
+              <li>Handled concurrent clients and miner join/leave behavior without losing in-flight work.</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <div class="project-topline">
+              <span>Consensus</span>
+              <span>Go | RPC</span>
+            </div>
+            <h3>Raft Consensus Algorithm</h3>
+            <p>
+              Implemented a replicated log with leader election, heartbeats, RequestVote and
+              AppendEntries RPCs, commit-index advancement, and ApplyCommand delivery under
+              delayed, reordered, and dropped RPCs.
+            </p>
+            <ul class="metric-list">
+              <li>Maintained progress when a quorum was available and stopped safely without one.</li>
+              <li>Separated protocol state, RPC handling, and committed-entry delivery to avoid deadlocks.</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <div class="project-topline">
+              <span>Geo-replicated storage</span>
+              <span>Go | Actors | RPC</span>
+            </div>
+            <h3>CMUD Backend Storage System</h3>
+            <p>
+              Built the backend for a multiplayer text-world service: a geographically distributed,
+              highly available key-value store whose actors answer local queries immediately and
+              synchronize updates in the background.
+            </p>
+            <ul class="metric-list">
+              <li>Implemented actor mailboxes, remote tells, query RPCs, and thread-safe KVS client calls.</li>
+              <li>Used last-writer-wins merge semantics for eventual consistency across local and remote actors.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section split-section" id="research" aria-labelledby="research-title">
+        <div class="section-heading">
+          <p class="eyebrow">ML systems project</p>
+          <h2 id="research-title">KV cache compression study</h2>
+        </div>
+        <article class="research-card">
+          <div>
+            <h3>Eviction x Quantization Interaction</h3>
+            <p>
+              Worked on an MLSys-style empirical report studying how KV-cache token eviction and
+              value quantization interact under an equal-memory protocol. The project compared
+              sequential eviction/quantization orderings, MiniKV-style baselines, H2O-style heavy
+              hitters, and a joint scoring strategy across Llama and Yi model families.
+            </p>
+            <ul class="metric-list">
+              <li>Showed that equal-byte-budget comparisons change the interpretation of compression quality.</li>
+              <li>At an aggressive 8.39 MB cache budget on Llama-3.2-3B, joint scoring reached 8.62 PPL versus 43.00/48.17 for sequential orderings.</li>
+              <li>Used error decomposition to explain when eviction and quantization noise cancel or reinforce.</li>
+            </ul>
+          </div>
+          <figure class="research-figure">
+            <img
+              src="assets/mlsys-long-context-pareto.png"
+              alt="Pareto plot from the KV cache compression project showing quality versus memory across compression strategies."
+            >
+            <figcaption>Quality-memory Pareto analysis from the KV cache compression project.</figcaption>
+          </figure>
+        </article>
+      </section>
+
+      <section class="content-section split-section" id="experience" aria-labelledby="experience-title">
+        <div class="section-heading">
+          <p class="eyebrow">Experience</p>
+          <h2 id="experience-title">Internships and applied engineering</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="time">May 2026 - Aug 2026</div>
+            <div>
+              <h3>Google</h3>
+              <p>Incoming Software Engineer Intern in Sunnyvale, CA.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="time">Aug 2024 - Dec 2024</div>
+            <div>
+              <h3>Lee's Lab at USC Keck School of Medicine</h3>
+              <p>
+                Developed a web-based DNA sequence analysis platform for HIV research, processing
+                roughly 150-200GB of genetic data daily across six research labs. Built React upload
+                flows, AWS Lambda and SQS batch processing, SES notifications, DynamoDB job
+                tracking, and file-scoped Google Drive OAuth.
+              </p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="time">May 2024 - Jul 2024</div>
+            <div>
+              <h3>CNeutral.io</h3>
+              <p>
+                Built Django APIs, PostgreSQL storage, Redis-backed access paths, and React/Chart.js
+                dashboards for ESG analytics covering 10,000+ listed companies.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="product-title">
+        <div class="section-heading">
+          <p class="eyebrow">Full-stack product</p>
+          <h2 id="product-title">Restaurant review web app</h2>
+        </div>
+        <article class="wide-card">
+          <div>
+            <h3>Location-aware restaurant discovery</h3>
+            <p>
+              Built a Spring Boot and React review platform where users can search, rate, and review
+              restaurants through an interactive Google Maps interface with radius search, custom
+              markers, info windows, cuisine filters, rating filters, and price filters.
+            </p>
+          </div>
+          <div class="tag-cloud" aria-label="Technologies">
+            <span>Spring Boot</span>
+            <span>React</span>
+            <span>Google Maps</span>
+            <span>REST APIs</span>
+            <span>Location search</span>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-section" aria-labelledby="skills-title">
+        <div class="section-heading">
+          <p class="eyebrow">Skills</p>
+          <h2 id="skills-title">Tools I use</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Languages</h3>
+            <p>Python, C/C++, Go, Java, JavaScript, TypeScript, Swift, Dart, HTML/CSS, Bash</p>
+          </div>
+          <div class="skill-group">
+            <h3>Frameworks</h3>
+            <p>Django, Spring Boot, React, Flask, FastAPI, Express.js, Pandas, NumPy, PyTorch, JUnit</p>
+          </div>
+          <div class="skill-group">
+            <h3>Infrastructure</h3>
+            <p>PostgreSQL, Redis, Docker, Kubernetes, AWS EC2, S3, DynamoDB, EBS, Lambda, Terraform, Poetry</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">I am interested in systems, infrastructure, and product engineering roles.</h2>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:ezhangraduate@gmail.com">ezhangraduate@gmail.com</a>
+          <a href="https://github.com/Riaria9" target="_blank" rel="noreferrer">github.com/Riaria9</a>
+          <a href="https://linkedin.com/in/edward-zhang-sde" target="_blank" rel="noreferrer">linkedin.com/in/edward-zhang-sde</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
