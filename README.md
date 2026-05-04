@@ -6,6 +6,13 @@ Static personal website ready for GitHub Pages.
 
 Open `index.html` in a browser.
 
+## Pages
+
+- `index.html`: overview
+- `experience.html`: internships and education
+- `projects.html`: project portfolio
+- `contact.html`: contact links
+
 ## Deploy to `github.io`
 
 1. Create a public GitHub repository named `riaria9.github.io`.

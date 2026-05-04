@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Edward Zhang's operating systems, distributed systems, ML systems, and full-stack projects."
+    >
+    <title>Projects | Edward Zhang</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Edward Zhang home">
+        <span class="brand-mark">EZ</span>
+        <span>Edward Zhang</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="experience.html">Experience</a>
+        <a class="active" href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="assets/Edward_Zhang_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">Projects</p>
+        <h1>Systems projects, distributed services, ML systems experiments, and full-stack products.</h1>
+      </section>
+
+      <section class="section-block" id="kernel">
+        <div class="section-heading">
+          <p class="eyebrow">Featured project</p>
+          <h2>Unix-like kernel from scratch</h2>
+        </div>
+        <article class="feature-card">
+          <div>
+            <p class="project-meta">C | x86 | Simics | virtual memory | scheduling</p>
+            <h3>15-410 Kernel Project</h3>
+            <p>
+              Designed and implemented a Unix-like kernel supporting multiple virtual address
+              spaces, user-kernel mode transitions, preemptive multitasking, system calls,
+              exception handling, and device-backed console, keyboard, and timer functionality.
+            </p>
+            <ul class="clean-list">
+              <li>Built paging-based virtual memory, physical frame allocation, address-space loading, and user pointer validation.</li>
+              <li>Implemented scheduling and context switching with timer-driven preemption and clean sleep/wakeup paths.</li>
+              <li>Integrated process and thread lifecycle behavior including fork, exec, wait, vanish, thread fork, and fault cleanup.</li>
+              <li>Carried earlier OS components forward: traceback, interrupt-driven drivers, and a user-level thread library.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Project list</p>
+          <h2>Additional projects</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card" id="distributed">
+            <p class="project-meta">Go | UDP | custom protocol</p>
+            <h3>Distributed Bitcoin Mining System</h3>
+            <p>
+              Built a distributed miner that partitions hash search across dynamic workers using
+              a custom Live Sequence Protocol over UDP, fair scheduling, heartbeat detection,
+              retransmission, and failed-work reassignment.
+            </p>
+            <ul class="clean-list">
+              <li>Reduced a 9-digit hash search from 28 hours to 17 minutes with 100+ concurrent miners.</li>
+              <li>Handled concurrent clients and miner join/leave behavior without losing in-flight work.</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <p class="project-meta">Go | RPC | replicated log</p>
+            <h3>Raft Consensus Algorithm</h3>
+            <p>
+              Implemented a replicated log with leader election, heartbeats, RequestVote and
+              AppendEntries RPCs, commit-index advancement, and ApplyCommand delivery under
+              delayed, reordered, and dropped RPCs.
+            </p>
+            <ul class="clean-list">
+              <li>Maintained progress when a quorum was available and stopped safely without one.</li>
+              <li>Separated protocol state, RPC handling, and committed-entry delivery to avoid deadlocks.</li>
+            </ul>
+          </article>
+
+          <article class="project-card">
+            <p class="project-meta">Go | actors | RPC | key-value storage</p>
+            <h3>CMUD Backend Storage System</h3>
+            <p>
+              Built the backend for a multiplayer text-world service: a geographically
+              distributed, highly available key-value store whose actors answer local queries
+              immediately and synchronize updates in the background.
+            </p>
+            <ul class="clean-list">
+              <li>Implemented actor mailboxes, remote tells, query RPCs, and thread-safe KVS client calls.</li>
+              <li>Used last-writer-wins merge semantics for eventual consistency across local and remote actors.</li>
+            </ul>
+          </article>
+
+          <article class="project-card visual-card" id="mlsys">
+            <p class="project-meta">LLM serving | cache memory | empirical evaluation</p>
+            <h3>KV Cache Compression Project</h3>
+            <p>
+              Studied how KV-cache token eviction and value quantization interact under an
+              equal-memory protocol, comparing sequential orderings, MiniKV-style baselines,
+              H2O-style heavy hitters, and a joint scoring strategy.
+            </p>
+            <ul class="clean-list">
+              <li>At an 8.39 MB cache budget on Llama-3.2-3B, joint scoring reached 8.62 PPL versus 43.00/48.17 for sequential orderings.</li>
+              <li>Used error decomposition to explain when eviction and quantization noise cancel or reinforce.</li>
+            </ul>
+            <figure>
+              <img
+                src="assets/mlsys-long-context-pareto.png"
+                alt="Quality-memory Pareto plot from the KV cache compression project."
+              >
+            </figure>
+          </article>
+
+          <article class="project-card">
+            <p class="project-meta">Spring Boot | React | Google Maps | REST APIs</p>
+            <h3>Restaurant Review Web App</h3>
+            <p>
+              Built a restaurant review platform where users can search, rate, and review
+              restaurants through an interactive Google Maps interface with radius search,
+              custom markers, info windows, cuisine filters, rating filters, and price filters.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
